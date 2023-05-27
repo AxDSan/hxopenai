@@ -43,3 +43,20 @@ typedef CreateEmbeddings = {
     var input:EitherType<Array<String>, String>;
     @:optional var user:String;
 }
+
+typedef ChatCompletion = {
+    var model:String;
+    @:optional var messages:Array<String>;
+    @:optional var role:String;
+    @:optional var content:String;
+    @:optional var name:String;
+    @:optional var temperature:Int;
+    @:optional var top_p:Int;
+    @:optional var n:Int;
+    @:optional var stream:Bool;
+    @:optional var max_tokens:Int;
+    @:optional var presence_penalty:Int;
+    @:optional var frequency_penalty:Int;
+    @:optional var logit_bias:Array<String>;
+    @:optional var user:String;
+}
