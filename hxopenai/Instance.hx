@@ -68,6 +68,60 @@ class Instance {
         return json;
     }
 
+    public function createChatCompletion(cc:Typedefs.ChatCompletion):Dynamic {
+        var json:Dynamic;
+        if (openai_token == "")
+        {
+            #if sys
+            Sys.println("[hxopenai] Token not specified. Try setting it with setToken()");
+            #else
+            trace("[hxopenai] Token not specified. Try setting it with setOrgID()");
+            #end
+            json = "";
+        }
+        else
+        {
+            var _data:String;
+            var r = new haxe.Http(url + "chat/completions");
+            
+            r.addHeader("User-Agent", "hxopenai (https://github.com/FurretDev/hxdiscord)");
+            r.addHeader("Content-Type", "application/json");
+            r.addHeader("Authorization", "Bearer " + openai_token);
+            if (openai_org != null)
+            {
+                r.addHeader("OpenAI-Organization", openai_org);
+            }
+            
+            r.setPostData(haxe.Json.stringify(cc));
+            
+		    r.onData = function(data:String)
+		    {
+                if (debug)
+                {
+                    trace(data);
+                }
+                json = haxe.Json.parse(data);
+		    }
+        
+		    r.onError = function(error)
+		    {
+		    	trace("[hxopenai] An error has occurred: " + error);
+                if (r.responseData == null || r.responseData == "" || r.responseData == " ")
+                {
+                    json = error;
+                }
+                else
+                {
+                    json = r.responseData;
+                }
+		    }
+        
+		    r.request(true);
+        }
+        return json;
+    }
+
+
     public function createImage(ic:Typedefs.CreateImage):Dynamic {
         var json:Dynamic;
         if (openai_token == "")
