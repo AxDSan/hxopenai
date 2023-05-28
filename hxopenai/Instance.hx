@@ -15,7 +15,7 @@ class Instance {
     public function setToken(t:String) { this.openai_token = t; }
     public function setOrgID(oid:String) { this.openai_org = oid; }
 
-    public function createTextCompletion(tc:Typedefs.TextCompletion):Dynamic {
+    public function makeRequest(method:String, body:Dynamic):Dynamic {
         var json:Dynamic;
         if (openai_token == "")
         {
@@ -29,7 +29,7 @@ class Instance {
         else
         {
             var _data:String;
-            var r = new haxe.Http(url + "completions");
+            var r = new haxe.Http(url + method);
             
             r.addHeader("User-Agent", "hxopenai (https://github.com/FurretDev/hxdiscord)");
             r.addHeader("Content-Type", "application/json");
@@ -39,7 +39,7 @@ class Instance {
                 r.addHeader("OpenAI-Organization", openai_org);
             }
             
-            r.setPostData(haxe.Json.stringify(tc));
+            r.setPostData(haxe.Json.stringify(body));
             
 		    r.onData = function(data:String)
 		    {
@@ -66,166 +66,22 @@ class Instance {
 		    r.request(true);
         }
         return json;
+    }
+
+    public function createTextCompletion(tc:Typedefs.TextCompletion):Dynamic {
+        return makeRequest("completions", tc);
     }
 
     public function createChatCompletion(cc:Typedefs.ChatCompletion):Dynamic {
-        var json:Dynamic;
-        if (openai_token == "")
-        {
-            #if sys
-            Sys.println("[hxopenai] Token not specified. Try setting it with setToken()");
-            #else
-            trace("[hxopenai] Token not specified. Try setting it with setOrgID()");
-            #end
-            json = "";
-        }
-        else
-        {
-            var _data:String;
-            var r = new haxe.Http(url + "chat/completions");
-            
-            r.addHeader("User-Agent", "hxopenai (https://github.com/FurretDev/hxdiscord)");
-            r.addHeader("Content-Type", "application/json");
-            r.addHeader("Authorization", "Bearer " + openai_token);
-            if (openai_org != null)
-            {
-                r.addHeader("OpenAI-Organization", openai_org);
-            }
-            
-            r.setPostData(haxe.Json.stringify(cc));
-            
-		    r.onData = function(data:String)
-		    {
-                if (debug)
-                {
-                    trace(data);
-                }
-                json = haxe.Json.parse(data);
-		    }
-        
-		    r.onError = function(error)
-		    {
-		    	trace("[hxopenai] An error has occurred: " + error);
-                if (r.responseData == null || r.responseData == "" || r.responseData == " ")
-                {
-                    json = error;
-                }
-                else
-                {
-                    json = r.responseData;
-                }
-		    }
-        
-		    r.request(true);
-        }
-        return json;
+        return makeRequest("chat/completions", cc);
     }
 
-
     public function createImage(ic:Typedefs.CreateImage):Dynamic {
-        var json:Dynamic;
-        if (openai_token == "")
-        {
-            #if sys
-            Sys.println("[hxopenai] Token not specified. Try setting it with setToken()");
-            #else
-            trace("[hxopenai] Token not specified. Try setting it with setOrgID()");
-            #end
-            json = "";
-        }
-        else
-        {
-            var _data:String;
-            var r = new haxe.Http(url + "images/generations");
-            
-            r.addHeader("User-Agent", "hxopenai (https://github.com/FurretDev/hxdiscord)");
-            r.addHeader("Content-Type", "application/json");
-            r.addHeader("Authorization", "Bearer " + openai_token);
-            if (openai_org != null)
-            {
-                r.addHeader("OpenAI-Organization", openai_org);
-            }
-            
-            r.setPostData(haxe.Json.stringify(ic));
-            
-		    r.onData = function(data:String)
-		    {
-                if (debug)
-                {
-                    trace(data);
-                }
-                json = haxe.Json.parse(data);
-		    }
-        
-		    r.onError = function(error)
-		    {
-		    	trace("[hxopenai] An error has occurred: " + error);
-                if (r.responseData == null || r.responseData == "" || r.responseData == " ")
-                {
-                    json = error;
-                }
-                else
-                {
-                    json = r.responseData;
-                }
-		    }
-        
-		    r.request(true);
-        }
-        return json;
+        return makeRequest("images/generations", ic);
     }
 
     public function createEdit(ce:Typedefs.CreateEdit)
     {
-        var json:Dynamic;
-        if (openai_token == "")
-        {
-            #if sys
-            Sys.println("[hxopenai] Token not specified. Try setting it with setToken()");
-            #else
-            trace("[hxopenai] Token not specified. Try setting it with setOrgID()");
-            #end
-            json = "";
-        }
-        else
-        {
-            var _data:String;
-            var r = new haxe.Http(url + "edits");
-            
-            r.addHeader("User-Agent", "hxopenai (https://github.com/FurretDev/hxdiscord)");
-            r.addHeader("Content-Type", "application/json");
-            r.addHeader("Authorization", "Bearer " + openai_token);
-            if (openai_org != null)
-            {
-                r.addHeader("OpenAI-Organization", openai_org);
-            }
-            
-            r.setPostData(haxe.Json.stringify(ce));
-            
-		    r.onData = function(data:String)
-		    {
-                if (debug)
-                {
-                    trace(data);
-                }
-                json = haxe.Json.parse(data);
-		    }
-        
-		    r.onError = function(error)
-		    {
-		    	trace("[hxopenai] An error has occurred: " + error);
-                if (r.responseData == null || r.responseData == "" || r.responseData == " ")
-                {
-                    json = error;
-                }
-                else
-                {
-                    json = r.responseData;
-                }
-		    }
-        
-		    r.request(true);
-        }
-        return json;
+        return makeRequest("edits", ce);
     }
 }
