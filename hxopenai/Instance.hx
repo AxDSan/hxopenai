@@ -15,7 +15,7 @@ class Instance {
     public function setApiKey(t:String) { this.openai_api_key = t; }
     public function setOrgId(oid:String) { this.openai_org_id = oid; }
 
-    public function makeRequest(method:String, body:Dynamic):Dynamic {
+    public function makeRequest(endpoint:String, body:Dynamic):Dynamic {
         var json:Dynamic;
         if (openai_api_key == "")
         {
@@ -29,7 +29,7 @@ class Instance {
         else
         {
             var _data:String;
-            var r = new haxe.Http(url + method);
+            var r = new haxe.Http(url + endpoint);
             
             r.addHeader("User-Agent", "hxopenai (https://github.com/FurretDev/hxdiscord)");
             r.addHeader("Content-Type", "application/json");

@@ -139,9 +139,9 @@ Sets the OpenAI token to authenticate API requests.
 
 Sets the OpenAI organization ID.
 
-#### `makeRequest(method:String, body:Dynamic):Dynamic`
+#### `makeRequest(endpoint:String, body:Dynamic):Dynamic`
 
-Makes a request to the OpenAI API using the specified method and request body.
+Makes a request to the OpenAI API using the specified endpoint and request body.
 
 #### `createTextCompletion(tc:Typedefs.TextCompletion):Dynamic`
 
