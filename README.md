@@ -47,7 +47,7 @@ Create an instance of the library:
 ```haxe
 var openai = new Instance();
 openai.setApiKey("YOUR_OPENAI_API_KEY");
-openai.setOrgId("YOUR_OPENAI_ORG_ID");
+openai.setOrgId("YOUR_OPENAI_ORG_ID"); /* Optional */
 ```
 
 > You can obtain a openai api key from https://platform.openai.com/account/api-keys 
