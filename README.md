@@ -1,6 +1,6 @@
 # HxOpenAI
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://axdsan.mit-license.org/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/your-username/your-library)
 
 A Haxe library for interacting with the OpenAI API.
