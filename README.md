@@ -31,7 +31,7 @@ You can install the library using the following methods:
 
 - Method 2: Install it using Haxelib:
 ```bash
-haxelib install your-library
+haxelib install hxopenai
 ```
 
 ## Usage
@@ -63,7 +63,7 @@ var response = instance.createTextCompletion(textCompletion);
 
 ## Examples
 
-Provide some usage examples or code snippets to demonstrate the functionality of your library.
+If you're not a code adept and don't really want to dig the documentation (under construction) here you can find some bites set out for you; Examples on how you can use the library.
 
 ```haxe
 // Example 1 - TextCompletion using `text-davinci-003`
@@ -94,8 +94,9 @@ class Main {
         trace(response.choices[0].text);
     }
 }
+```
 
-
+```haxe
 // Example 2 - ChatCompletion using `gpt-3.5-turbo`
 import hxopenai.*;
 
