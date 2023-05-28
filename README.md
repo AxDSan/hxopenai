@@ -30,8 +30,10 @@ You can install the library using the following methods:
 ```
 
 - Method 2: Install it using Haxelib:
+> Ideally it would be best to simply `haxelib install hxopenai`, but there will be an issue with the naming and I haven't submitted the library just yet...
+
 ```bash
-haxelib install hxopenai
+haxelib git hxopenai git@github.com:AxDSan/hxopenai.git
 ```
 
 ## Usage
