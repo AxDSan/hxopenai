@@ -43,9 +43,9 @@ import hxopenai.Instance;
 
 Create an instance of the library:
 ```haxe
-var instance = new Instance();
-instance.setApiKey("YOUR_OPENAI_API_KEY");
-instance.setOrgId("YOUR_OPENAI_ORG_ID");
+var openai = new Instance();
+openai.setApiKey("YOUR_OPENAI_API_KEY");
+openai.setOrgId("YOUR_OPENAI_ORG_ID");
 ```
 
 > You can obtain a openai api key from https://platform.openai.com/account/api-keys 
@@ -58,7 +58,7 @@ var textCompletion = {
   // Additional parameters...
 };
 
-var response = instance.createTextCompletion(textCompletion);
+var response = openai.createTextCompletion(textCompletion);
 ```
 
 ## Examples
@@ -71,8 +71,8 @@ import hxopenai.*;
 
 class Main {
     static function main() {
-        var instance = new Instance();
-        instance.setApiKey("<YOUR-OPENAI-API-KEY>");
+        var openai = new Instance();
+        openai.setApiKey("<YOUR-OPENAI-API-KEY>");
 
         // Create a text completion.
         var textCompletion:Typedefs.TextCompletion = {
@@ -88,7 +88,7 @@ class Main {
         };
 
         // Make the request.
-        var response = instance.createTextCompletion(textCompletion);
+        var response = openai.createTextCompletion(textCompletion);
 
         // Print the response.
         trace(response.choices[0].text);
@@ -102,8 +102,8 @@ import hxopenai.*;
 
 class Main {
     static function main() {
-        var instance = new Instance();
-        instance.setApiKey("<YOUR-OPENAI-API-KEY>");
+        var openai = new Instance();
+        openai.setApiKey("<YOUR-OPENAI-API-KEY>");
 
         Example usage of createChatCompletion
         var chatCompletion:Typedefs.ChatCompletion = {
@@ -115,7 +115,7 @@ class Main {
                 }
             ]
         };
-        var chatCompletionResult = instance.createChatCompletion(chatCompletion);
+        var chatCompletionResult = openai.createChatCompletion(chatCompletion);
         var messageContent = chatCompletionResult.choices[0].message.content;
         trace(messageContent);
     }
