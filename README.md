@@ -44,8 +44,8 @@ import hxopenai.Instance;
 Create an instance of the library:
 ```haxe
 var instance = new Instance();
-instance.setToken("YOUR_OPENAI_API_KEY");
-instance.setOrgID("YOUR_OPENAI_ORG_ID");
+instance.setApiKey("YOUR_OPENAI_API_KEY");
+instance.setOrgId("YOUR_OPENAI_ORG_ID");
 ```
 
 > You can obtain a openai api key from https://platform.openai.com/account/api-keys 
@@ -72,7 +72,7 @@ import hxopenai.*;
 class Main {
     static function main() {
         var instance = new Instance();
-        instance.setToken("<YOUR-OPENAI-API-KEY>");
+        instance.setApiKey("<YOUR-OPENAI-API-KEY>");
 
         // Create a text completion.
         var textCompletion:Typedefs.TextCompletion = {
@@ -103,7 +103,7 @@ import hxopenai.*;
 class Main {
     static function main() {
         var instance = new Instance();
-        instance.setToken("<YOUR-OPENAI-API-KEY>");
+        instance.setApiKey("<YOUR-OPENAI-API-KEY>");
 
         Example usage of createChatCompletion
         var chatCompletion:Typedefs.ChatCompletion = {
@@ -131,11 +131,11 @@ class Main {
 
 Creates a new instance of the library.
 
-#### `setToken(token:String)`
+#### `setApiKey(token:String)`
 
 Sets the OpenAI token to authenticate API requests.
 
-#### `setOrgID(orgId:String)`
+#### `setOrgId(orgId:String)`
 
 Sets the OpenAI organization ID.
 
