@@ -1,9 +1,12 @@
-# Your Library Name
+# HxOpenAI
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/your-username/your-library)
 
-Short description or tagline for your library.
+A Haxe library for interacting with the OpenAI API.
+
+**Credits**: This library is inspired by the work of [FurretDev](https://github.com/FurretDev).
+
 
 ## Table of Contents
 - [Installation](#installation)
@@ -21,7 +24,7 @@ You can install the library using the following methods:
 ```json
 {
   "dependencies": {
-    "your-library": "1.0.0"
+    "hxopenai": "1.0.0"
   }
 }
 ```
@@ -41,9 +44,11 @@ import hxopenai.Instance;
 Create an instance of the library:
 ```haxe
 var instance = new Instance();
-instance.setToken("YOUR_OPENAI_TOKEN");
+instance.setToken("YOUR_OPENAI_API_KEY");
 instance.setOrgID("YOUR_OPENAI_ORG_ID");
 ```
+
+> You can obtain a openai api key from https://platform.openai.com/account/api-keys 
 
 Make requests to the OpenAI API using the available methods:
 ```haxe
@@ -61,12 +66,60 @@ var response = instance.createTextCompletion(textCompletion);
 Provide some usage examples or code snippets to demonstrate the functionality of your library.
 
 ```haxe
-// Example 1
-var instance = new Instance();
-// Your code here...
+// Example 1 - TextCompletion using `text-davinci-003`
+import hxopenai.*;
 
-// Example 2
-// Your code here...
+class Main {
+    static function main() {
+        var instance = new Instance();
+        instance.setToken("<YOUR-OPENAI-API-KEY>");
+
+        // Create a text completion.
+        var textCompletion:Typedefs.TextCompletion = {
+            prompt: "Once upon a time",
+            max_tokens: 256,
+            top_p: 1,
+            n: 1,
+            stream: false,
+            logprobs: null,
+            echo: false,
+            stop: ["\n"],
+            model: "text-davinci-003",
+        };
+
+        // Make the request.
+        var response = instance.createTextCompletion(textCompletion);
+
+        // Print the response.
+        trace(response.choices[0].text);
+    }
+}
+
+
+// Example 2 - ChatCompletion using `gpt-3.5-turbo`
+import hxopenai.*;
+
+class Main {
+    static function main() {
+        var instance = new Instance();
+        instance.setToken("<YOUR-OPENAI-API-KEY>");
+
+        Example usage of createChatCompletion
+        var chatCompletion:Typedefs.ChatCompletion = {
+            model: "gpt-3.5-turbo",
+            messages: [
+                {
+                    role: "user",
+                    content: "Hey there!"
+                }
+            ]
+        };
+        var chatCompletionResult = instance.createChatCompletion(chatCompletion);
+        var messageContent = chatCompletionResult.choices[0].message.content;
+        trace(messageContent);
+    }
+}
+
 ```
 
 ## API Reference

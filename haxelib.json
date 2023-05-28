@@ -1,10 +1,10 @@
 {
     "name": "hxopenai",
-    "url" : "https://github.com/FurretDev/hxopenai/",
+    "url" : "https://github.com/AxDSan/hxopenai/",
     "license": "MIT",
     "tags": ["OpenAI", "AI", "gpt-3", "ChatGPT"],
-    "description": "OpenAI library for Haxe. (It is still in development)",
-    "version": "0.0.1",
-    "releasenote": "Initial Release",
-    "contributors": ["Furret"]
+    "description": "A Haxe library for interacting with the OpenAI API.",
+    "version": "1.0.0",
+    "releasenote": "Initial release",
+    "contributors": ["Furret", "AxDSan"]
   }
